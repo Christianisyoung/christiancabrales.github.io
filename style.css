@@ -10,6 +10,8 @@ body {
     min-height: 100vh;
     justify-content: space-between;
     text-align: center;
+    overflow-x: hidden; /* Prevents horizontal scrollbar when tumbleweed goes off-screen */
+    position: relative;
 }
 
 /* Header styling */
@@ -62,6 +64,34 @@ button {
 /* Button hover effect */
 button:hover {
     background-color: #5570c6;
+}
+
+/* Tumbleweed styling */
+.tumbleweed {
+    position: absolute;
+    bottom: 80px; /* Position it near the bottom of the page */
+    left: -100px; /* Start it hidden off the left side of the screen */
+    font-size: 3rem;
+    opacity: 0; /* Hidden by default */
+    pointer-events: none;
+}
+
+/* Animation class applied via JavaScript */
+.tumbleweed.roll {
+    opacity: 1;
+    animation: rollAcross 2.5s linear forwards;
+}
+
+/* Keyframes define the rolling motion and rotation */
+@keyframes rollAcross {
+    0% {
+        left: -100px;
+        transform: rotate(0deg);
+    }
+    100% {
+        left: 105%; /* Travel all the way past the right side of the screen */
+        transform: rotate(720deg); /* Spins twice as it rolls */
+    }
 }
 
 /* Footer styling */
