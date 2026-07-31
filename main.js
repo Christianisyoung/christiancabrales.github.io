@@ -1,21 +1,21 @@
 // Wait for the browser to load our script completely
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Grab the button element from our HTML using its ID
+    // Grab the button and tumbleweed elements from our HTML
     const colorButton = document.getElementById('colorButton');
-    
-    // Define an array of fun background colors
-    const colors = ['#ff7675', '#74b9ff', '#55efc4', '#ffeaa7', '#a29bfe'];
+    const tumbleweed = document.getElementById('tumbleweed');
     
     // Add a 'click' event listener to the button
     colorButton.addEventListener('click', () => {
-        // Pick a random color from our array
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        // If the tumbleweed is already rolling, reset it so it can trigger again
+        tumbleweed.classList.remove('roll');
         
-        // Change the background color of the card element
-        const card = document.querySelector('.card');
-        card.style.backgroundColor = randomColor;
+        // Force the browser to register the class removal using void offsetWidth
+        void tumbleweed.offsetWidth;
         
-        console.log('Button clicked! Card background changed to: ' + randomColor);
+        // Add the roll class to trigger the CSS animation
+        tumbleweed.classList.add('roll');
+        
+        console.log('Button clicked! Tumbleweed rolling across the screen.');
     });
 });
